@@ -16,6 +16,7 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class GsonParserTest {
@@ -41,7 +42,7 @@ public class GsonParserTest {
         final BeanModel beanModel = model.getBeans().get(0);
         Assert.assertEquals("DummyBean", beanModel.getOrigin().getSimpleName());
         Assert.assertTrue(beanModel.getProperties().size() > 0);
-        Assert.assertEquals("firstProperty", beanModel.getProperties().get(0).getName());
+        Assert.assertTrue(beanModel.getProperties().stream().map( i -> i.getName()).collect(Collectors.toList()).contains("firstProperty"));
     }
 
     @Test
